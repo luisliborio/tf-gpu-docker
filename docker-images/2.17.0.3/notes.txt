@@ -1,0 +1,15 @@
+# 2.17.0.3-gpu 
+    - added:
+        - mlflow
+        - pyspark
+        - albumentationsx
+        - tqdm
+        - cleaned requirements
+
+    - OBS:
+        - numpy limited to <2 so won't conflict mlflow with TF
+        - Protobuf limited to <6.3 so won't conflict with TF
+        - mlflow fix for blinker incompatibility with TF: added to dockerfile RUN pip install --ignore-installed blinker. I couldn't find another way to deal with it.
+        - pyspark needs in docker-compose:
+            ports:
+              - "4040-4050:4040-4050"

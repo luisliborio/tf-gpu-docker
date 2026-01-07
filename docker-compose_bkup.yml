@@ -1,0 +1,12 @@
+# imagem simples com tf-gpu 
+services:
+  tensorflow:
+    image: lsmliborio/tensorflow:2.17.0.3-gpu
+    volumes:
+      - ./:/workspace
+    ports:
+      - "4040-4050:4040-4050"   # Spark UI
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 # pyspark
+    command: tail -f /dev/null
+    runtime: nvidia
