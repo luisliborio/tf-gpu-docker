@@ -1,27 +1,22 @@
 services:
   tensorflow:
     image: lsmliborio/tensorflow:2.17.0.3-gpu
+    container_name: tensorflow
+    runtime: nvidia
     volumes:
       - ./:/workspace
-      - ./mlflow_data:/mlflow_data                   
-    ports:
-      - "4040-4050:4040-4050"                        # pyspark
-    environment:
-      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 # pyspark
-      - MLFLOW_TRACKING_URI=http://mlflow:5000       # mlflow service
-    command: tail -f /dev/null
-    runtime: nvidia
+      - ./mlruns:/mlruns      
+      - /mnt/e/datasets/:/workspace/datasets
 
-# comentar caso não queira utilizar mlflow
-  mlflow:
-    image: ghcr.io/mlflow/mlflow:v2.20.3
-    volumes:
-      - ./mlflow_data:/mlflow_data
     ports:
+      - "4040-4050:4040-4050"
       - "5000:5000"
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - MLFLOW_TRACKING_URI=file:///mlruns
     command: >
       mlflow server
-      --backend-store-uri sqlite:///mlflow_data/mlflow.db
-      --default-artifact-root /mlflow_data/artifacts
+      --backend-store-uri file:///mlruns
+      --default-artifact-root /mlruns
       --host 0.0.0.0
       --port 5000
