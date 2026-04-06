@@ -1,0 +1,21 @@
+torch
+scikit-image
+plotly
+#tensorflow-hub
+#tf_keras
+regex
+keras-hub # no-deps
+keras # upgrade no-deps
+kagglehub
+kagglesdk
+
+Notebooks vs-code survey:
+I just get a little frustrated with the GUI glitches. It's very common for the notebook interface get a little 'crazy'. Some symptoms I can remember now: 
+
+- One cell disappears and appears again after a long scrolling
+- The syntax corrector stops working in an specific cell, so I have to copy and paste it
+- When the kernel crashes, sometimes, it just get stuck for many seconds/minutes, taking a while so I can restart it
+- Some cells suddenly stop the auto completion; 
+- sometimes, when the kernel is running a notebook, this notebook cells get stuck. There is no other way to run them again unless I close everything. However, during this situations, other notebooks still work. Even the same notebook, but with newer cells, not the pre existing ones before the crash.
+- when running a keras+tensorflow training, and the kernel crashes, it doesn't come back. I have to restart the system.
+- If, by mistake, I run a heavy python for loop in a jupyter cell, (like plot thousands of images), the kernel crashes and won't come back. In similar situations, the kernel doesn't crash, but I can't manually reset it; it just won't let me and I have to wait the loop finishes or reset the system.
